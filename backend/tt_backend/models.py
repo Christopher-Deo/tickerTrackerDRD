@@ -7,7 +7,7 @@ def get_default_date():
 def get_default_time():
     return timezone.now().time()
 
-class Readings(models.Model):
+class Reading(models.Model):  # Changed to singular for consistency
     date = models.DateField(default=get_default_date)
     time = models.TimeField(default=get_default_time)
     systolic = models.PositiveIntegerField()

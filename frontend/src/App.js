@@ -1,26 +1,23 @@
-import logo from './logo.svg';
-import './App.css';
-import {useState, useEffect} from 'react';
+// App.jsx
+import React from 'react';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import Login from './components/auth/Login';
+import Register from './components/auth/Register';
+import Reset from './components/auth/Reset';
+import AuthContainer from './components/auth/AuthContainer';
+import AddReading from './components/AddReading';
 
 function App() {
-  const [data, setData] = useState(null);
-
-  useEffect(() => {
-    fetch('http://localhost:8000/test/')
-      .then(res => res.json())
-      .then(data => setData(data.data));
-  })
-
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <h1>An Awesome Blog </h1>
-        <h3>On Django, React, Postgres, and Docker </h3>
-
-        <p>{data}</p>
-      </header>
-    </div>
+    <Router>
+      <Routes>
+        <Route path="/" element={<AuthContainer />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/reset" element={<Reset />} />
+        <Route path="/add-reading" element={<AddReading/>} />
+      </Routes>
+    </Router>
   );
 }
 
